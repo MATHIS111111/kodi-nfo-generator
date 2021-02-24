@@ -68,7 +68,7 @@ def generate_imdb(id, language="en", fanart="none", fanart_file="folder.jpg", nf
     preflang_title = widget["data-title"]
 
     for script in soup.findAll("script", type="application/ld+json"):
-        j = json.loads(script.text)
+        j = json.loads(''.join(script.findAll(text=True)))
         logger.debug(j)
 
         root = add_node(doc, doc, "movie")
